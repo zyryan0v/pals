@@ -2,7 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LogoutView
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationForm
+
+def sign_up(request):
+    if request.method == "POST":
+        form = RegistrationForm(request.POST)
+        return HttpResponse("not implemented")
+    else:
+        form = RegistrationForm
+        return render(request, "accounts/sign_up.html", {
+            "form": form, 
+        })
 
 def user_login(request):
     if request.method == "POST":
@@ -24,3 +34,4 @@ def user_login(request):
 
 class UserLogoutView(LogoutView):
     template_name = "accounts/logged_out.html"
+
