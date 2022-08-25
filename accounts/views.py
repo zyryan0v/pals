@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LogoutView
 from .forms import LoginForm
 
 def user_login(request):
@@ -21,3 +22,5 @@ def user_login(request):
             "form": form, 
         })
 
+class UserLogoutView(LogoutView):
+    template_name = "accounts/logged_out.html"
