@@ -135,3 +135,4 @@ MEDIA_ROOT = "media/"
 MEDIA_URL = "media/image_uploads/"
 
 LOGOUT_REDIRECT_URL = "index"
+LOGIN_URL = "login"
