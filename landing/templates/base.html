@@ -7,16 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'pico.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
     <title>Landing</title>
 </head>
 <body>
     <nav class="container-fluid">
         <ul>
-            <li><strong>Imagelog</strong></li>
+            <li>
+                <strong><a class="contrast" href="{% url 'index' %}">Imagelog</a></strong>
+            </li>
         </ul>
         <ul>
                 {% if user.is_authenticated %}
-                    <li><a href="#">Welcome, {{ user.username }}</a></li>
+                    <li>
+                        Logged in as <a href="{% url 'edit_profile' %}"><strong>{{ user.username }}</strong></a>
+                    </li>
                     <li><a href="{% url 'logout' %}" role="button">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Sign In</a></li>

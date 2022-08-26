@@ -1,14 +1,51 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LogoutView
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, ProfileForm, UserForm
+from .models import Profile
+
+
+def edit_profile(request):
+    user = request.user
+    if request.method == "POST":
+
+        user_form = UserForm(request.POST, instance=user)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            
+            profile_form = ProfileForm(instance=user.profile)
+
+            messages.success(request, "Saved successfully")
+            return render(request, "accounts/edit_profile.html", {
+                "user_form": user_form,
+                "profile_form": profile_form,
+            })
+        else:
+            messages.error(request, "There was an error")
+            return render(request, "accounts/edit_profile.html", {
+                "user_form": user_form,
+                "profile_form": profile_form,
+            })
+
+    else:
+        user_form = UserForm(instance=user)
+        profile_form = ProfileForm(instance=user.profile)
+        return render(request, "accounts/edit_profile.html", {
+            "user_form": user_form,
+            "profile_form": profile_form,
+        })
+
 
 def sign_up(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Profile.objects.create(user=user)
             return redirect("login")
         else:
             return render(request, "accounts/sign_up.html", {
@@ -19,6 +56,7 @@ def sign_up(request):
         return render(request, "accounts/sign_up.html", {
             "form": form, 
         })
+
 
 def user_login(request):
     if request.method == "POST":
