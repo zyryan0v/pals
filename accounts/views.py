@@ -7,7 +7,13 @@ from .forms import LoginForm, RegistrationForm
 def sign_up(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
-        return HttpResponse("not implemented")
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+        else:
+            return render(request, "accounts/sign_up.html", {
+                "form": form, 
+            })
     else:
         form = RegistrationForm
         return render(request, "accounts/sign_up.html", {
