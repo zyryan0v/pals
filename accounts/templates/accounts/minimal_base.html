@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'pico.min.css' %}">
     <link rel="stylesheet" href="{% static 'base.css' %}">
-    <title>Landing</title>
+    
+    <title>Login</title>
 </head>
 <body>
     <nav class="container-fluid">
@@ -17,21 +18,11 @@
                 <strong><a class="contrast" href="{% url 'index' %}">Imagelog</a></strong>
             </li>
         </ul>
-        <ul>
-            {% if user.is_authenticated %}
-                <li>
-                    Logged in as <a href="{% url 'edit_profile' %}"><strong>{{ user.username }}</strong></a>
-                </li>
-                <li><a href="{% url 'logout' %}" role="button">Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}">Sign In</a></li>
-                <li><a href="{% url 'sign_up' %}" role="button">Sign Up</a></li>
-            {% endif %}
-        </ul>
     </nav>
+    
     <main class="container">
         {% block content %}
         {% endblock %}
-    </main> 
+    </main>
 </body>
 </html>

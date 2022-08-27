@@ -1,27 +1,18 @@
-{% load static %}
+{% extends "accounts/minimal_base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'pico.min.css' %}">
-    <link rel="stylesheet" href="{% static 'base.css' %}">
+{% block content %}
+    <h2>Sign Up</h2>
 
-    <title>Sign Up</title>
-</head>
-<body>
-    <main class="container">
-        <h2>Sign Up</h2>
+    <article class="alt-padding">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-        <article class="alt-padding">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Login">
-            </form>
-        </article>
-    </main>
-</body>
-</html>
+            <input type="submit" value="Sign Up">
+            <p class="form-or">
+                or
+                <a href="{% url 'login' %}">Sign In</a>
+            </p>
+        </form>
+    </article>
+{% endblock %}
