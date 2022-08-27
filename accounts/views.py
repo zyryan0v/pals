@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, PasswordChangeView, PasswordChangeDoneView
 from .forms import LoginForm, RegistrationForm, ProfileForm, UserForm
 from .models import Profile
 
@@ -80,3 +81,9 @@ def user_login(request):
 class UserLogoutView(LogoutView):
     template_name = "accounts/logged_out.html"
 
+class ChangePasswordView(PasswordChangeView):
+    template_name = "accounts/change_password.html"
+    success_url = reverse_lazy("change_password_done")
+
+class ChangePasswordDoneView(PasswordChangeDoneView):
+    template_name = "accounts/change_password_done.html"

@@ -15,6 +15,11 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ user_form.as_p }}
+
+            <p>
+                <a class="secondary" role="button" href="{% url 'change_password' %}">Change password</a>
+            </p>
+            
             {{ profile_form.as_p }}
 
             <input type="submit" value="Save">
