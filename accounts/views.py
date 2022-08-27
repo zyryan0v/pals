@@ -67,13 +67,13 @@ def user_login(request):
             login(request, user)
             return redirect("index")
         else:
-            return render(request, "accounts/login.html", {
+            return render(request, "accounts/sign_in.html", {
                 "form": form, 
             })
 
     else:
         form = LoginForm
-        return render(request, "accounts/login.html", {
+        return render(request, "accounts/sign_in.html", {
             "form": form, 
         })
 
