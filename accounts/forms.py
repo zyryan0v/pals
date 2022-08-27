@@ -20,3 +20,6 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ["user"]
+        widgets = {
+            'bio': forms.Textarea(attrs={"rows": 4}),
+        }

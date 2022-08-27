@@ -11,7 +11,7 @@
         </ul>
     {% endif %}
 
-        <article class="alt-padding">
+    <article class="alt-padding">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ user_form.as_p }}
@@ -19,5 +19,5 @@
 
             <input type="submit" value="Save">
         </form>
-        </article>
+    </article>
 {% endblock %}
