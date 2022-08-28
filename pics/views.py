@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from accounts.models import Profile
 
-# Create your views here.
+def show_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    profile = user.profile  
+    images = user.image_set.all()
+    
+    return render(request, "pics/profile.html", {
+        "user": user,
+        "profile": profile,
+        "images": images,
+    })

@@ -18,7 +18,6 @@ def edit_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            
             profile_form = ProfileForm(instance=user.profile)
 
             messages.success(request, "Saved successfully")

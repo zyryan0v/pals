@@ -23,5 +23,6 @@ from landing import views as landv
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", landv.index, name="index"),
+    path("", include("pics.urls")),
     path("accounts/", include("accounts.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

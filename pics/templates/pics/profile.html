@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <img class="avatar" src="{{ profile.avatar.url }}" alt="">
+    <div class="username">{{ user.username }}</div>
+</section>
+<section>
+    {% for image in images %}
+        <img class="image-thumb" src="{{ image.img.url }}" alt="">
+    {% endfor %}
+</section>
+{% endblock %}
