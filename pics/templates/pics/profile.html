@@ -3,7 +3,28 @@
 {% block content %}
 <section>
     <img class="avatar" src="{{ profile.avatar.url }}" alt="">
-    <div class="username">{{ user.username }}</div>
+    
+    <div class="profile-details">
+        <div class="username-row">
+            <div class="username">{{ user.username }}</div>
+            
+            <form class="follow-form" action="">
+                <input class="secondary" type="submit" value="Follow">
+            </form>
+        </div>
+        
+        <div class="count-row">
+            <div>
+                {{ images.count }} posts
+            </div>
+            <div>
+                {{ followers.count }} followers
+            </div>
+            <div>
+                {{ following.count }} following
+            </div>
+        </div>
+    </div>
 </section>
 <section>
     {% for image in images %}

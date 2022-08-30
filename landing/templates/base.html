@@ -26,6 +26,7 @@
                 <li>
                     Logged in as <a href="{% url 'edit_profile' %}"><strong>{{ user.username }}</strong></a>
                 </li>
+                <li><a role="button" class="outline" href="#">Add post</a></li>
                 <li><a href="{% url 'logout' %}" role="button">Logout</a></li>
             {% else %}
                 <li><a href="{% url 'login' %}">Sign In</a></li>
