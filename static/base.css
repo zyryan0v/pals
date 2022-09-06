@@ -30,6 +30,7 @@ article.alt-padding {
 }
 
 .username-row {
+    margin-bottom: 2rem;
 }
 
 .username {
@@ -43,6 +44,7 @@ article.alt-padding {
 }
 
 .follow-form input[type=submit] {
+    margin: 0;
 }
 
 .count-row div {

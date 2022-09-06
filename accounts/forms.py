@@ -19,7 +19,7 @@ class UserForm(UserChangeForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ["user"]
+        exclude = ["user", "follows"]
         widgets = {
             'bio': forms.Textarea(attrs={"rows": 4}),
         }

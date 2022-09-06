@@ -6,11 +6,15 @@
     
     <div class="profile-details">
         <div class="username-row">
-            <div class="username">{{ user.username }}</div>
+            <div class="username">{{ display_user.username }}</div>
             
-            <form class="follow-form" action="">
-                <input class="secondary" type="submit" value="Follow">
-            </form>
+            {% if display_user == user %}
+                <a role="button" class="outline secondary" href="{% url 'edit_profile' %}">Edit profile</a>
+            {% else %}
+                <form class="follow-form" action="">
+                    <input class="contrast" type="submit" value="Follow">
+                </form>
+            {% endif %}
         </div>
         
         <div class="count-row">

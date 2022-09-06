@@ -24,9 +24,9 @@
         <ul>
             {% if user.is_authenticated %}
                 <li>
-                    Logged in as <a href="{% url 'edit_profile' %}"><strong>{{ user.username }}</strong></a>
+                    Logged in as <a href="{% url 'show_profile' user.username %}"><strong>{{ user.username }}</strong></a>
                 </li>
-                <li><a role="button" class="outline" href="#">Add post</a></li>
+                <li><a  href="{% url 'add_post' %}">Add post</a></li>
                 <li><a href="{% url 'logout' %}" role="button">Logout</a></li>
             {% else %}
                 <li><a href="{% url 'login' %}">Sign In</a></li>
