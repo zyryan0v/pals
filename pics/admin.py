@@ -1,4 +1,4 @@
 from django.contrib import admin
-from . import models as m
+from .models import Image
 
-admin.site.register(m.Image)
+admin.site.register(Image)

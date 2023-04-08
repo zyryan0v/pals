@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add post
+{% endblock %}
+
+{% block content %}
+    <h2>Add Post</h2>
+
+    <article class="alt-padding">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <input type="submit" value="Share">
+            
+        </form>
+    </article>
+{% endblock %}
