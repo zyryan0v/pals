@@ -2,7 +2,9 @@
 
 {% block content %}
 <section>
-    <img class="avatar" src="{{ profile.avatar.url }}" alt="">
+    {% if profile.avatar %}
+        <img class="avatar" src="{{ profile.avatar.url }}" alt="">
+    {% endif %}
     
     <div class="profile-details">
         <div class="username-row">
@@ -27,6 +29,12 @@
             <div>
                 {{ following.count }} following
             </div>
+        </div>
+
+        <div class="bio-row">
+            <p>
+                {{ profile.bio }}
+            </p>
         </div>
     </div>
 </section>

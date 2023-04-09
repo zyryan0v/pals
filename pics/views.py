@@ -1,10 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from accounts.models import Profile
 from .models import Image
+from .forms import ImageForm
 
 def show_profile(request, username):
     display_user = get_object_or_404(User, username=username)
@@ -21,16 +23,23 @@ def show_profile(request, username):
         "followers": followers,
     })
 
+@login_required
 def add_post(request):
     if request.method == "POST":
-        pass
+        image_form = ImageForm(request.POST, request.FILES)
+        if image_form.is_valid():
+            image = image_form.save(commit=False)
+            image.user = request.user
+            image.save()
+            
+            return redirect("show_profile", username=request.user.username)
+        else:
+            return render(request, "pics/add_post.html", {
+                "form": image_form,
+            })
     else:
-        return render(request, "pics/add_post.html")
+        image_form = ImageForm()
+        return render(request, "pics/add_post.html", {
+            "form": image_form,
+        })
     
-class ImageCreateView(LoginRequiredMixin, CreateView):
-    model = Image
-    fields = ["img", "desc"]
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)

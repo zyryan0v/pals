@@ -19,18 +19,14 @@ def edit_profile(request):
             user_form.save()
             profile_form.save()
             profile_form = ProfileForm(instance=user.profile)
-
             messages.success(request, "Saved successfully")
-            return render(request, "accounts/edit_profile.html", {
-                "user_form": user_form,
-                "profile_form": profile_form,
-            })
         else:
             messages.error(request, "There was an error")
-            return render(request, "accounts/edit_profile.html", {
-                "user_form": user_form,
-                "profile_form": profile_form,
-            })
+
+        return render(request, "accounts/edit_profile.html", {
+            "user_form": user_form,
+            "profile_form": profile_form,
+        })
 
     else:
         user_form = UserForm(instance=user)
